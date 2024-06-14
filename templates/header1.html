@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dt.css') }}">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='bar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='parameters.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='models.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='data.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+                .hidden-button {
+            display: none;
+        }
+        @media only screen and (max-width: 768px) {
+            .no-gutters {
+                margin-top: 15% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <div class="header-content">
+            <a class="logo" href="{{ url_for('index') }}">
+                <img class='logoo' src="{{ url_for('static', filename='images/logoo.png') }}" alt="Logo">
+            </a>
+                 
+                
+                <a href="{{ url_for('insert_image')}}" class="start-button">Start</a>
+
+        </div>
+    </header>
+
+    <container class="background-image">

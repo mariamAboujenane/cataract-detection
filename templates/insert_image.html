@@ -1,0 +1,94 @@
+{% include 'header1.html' %}
+
+<form id="file-upload-form" class="uploader" method="post" enctype="multipart/form-data" action="{{ url_for('insert_image') }}">
+    <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
+    <label for="file-upload" id="file-drag">
+        
+        <img id="file-image" src="#" alt="Preview" class="hidden">
+        <div id="start">
+            <i class="fa fa-download" aria-hidden="true"></i>
+            <div>Select an image or <b>drag</b> here</div>
+            <div id="notimage" class="hidden">Please select an image</div>
+            <span id="file-upload-btn" class="select">Select an image</span>
+        </div>
+        <div id="response" class="hidden">
+            <div id="messages"></div>
+        </div>
+    </label>
+    <div class="form-container">
+    <input type="submit" class="predict" value="Predict">
+</div>
+</form>
+
+{% if result_text %}
+<div class="result-container form-container">
+    <p class="result">Result :</p>
+    <p class="result-text">{{ result_text }}</p>
+
+</div>
+{% endif %}
+
+<script>
+    function ekUpload() {
+        function Init() {
+            var fileSelect = document.getElementById('file-upload'),
+                fileDrag = document.getElementById('file-drag'),
+                submitButton = document.getElementById('file-upload-btn');
+
+            fileSelect.addEventListener('change', fileSelectHandler, false);
+
+            var xhr = new XMLHttpRequest();
+            if (xhr.upload) {
+                fileDrag.addEventListener('dragover', fileDragHover, false);
+                fileDrag.addEventListener('dragleave', fileDragHover, false);
+                fileDrag.addEventListener('drop', fileSelectHandler, false);
+            }
+        }
+
+        function fileDragHover(e) {
+            var fileDrag = document.getElementById('file-drag');
+
+            e.stopPropagation();
+            e.preventDefault();
+
+            fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+        }
+
+        function fileSelectHandler(e) {
+            var files = e.target.files || e.dataTransfer.files;
+
+            fileDragHover(e);
+
+            for (var i = 0, f; f = files[i]; i++) {
+                parseFile(f);
+            }
+        }
+
+        function parseFile(file) {
+            var imageName = file.name;
+            var isGood = /\.(?=gif|jpg|png|jpeg)/gi.test(imageName);
+
+            if (isGood) {
+                document.getElementById('start').classList.add("hidden");
+                document.getElementById('response').classList.remove("hidden");
+                document.getElementById('notimage').classList.add("hidden");
+                document.getElementById('file-image').classList.remove("hidden");
+                document.getElementById('file-image').src = URL.createObjectURL(file);
+            } else {
+                document.getElementById('file-image').classList.add("hidden");
+                document.getElementById('notimage').classList.remove("hidden");
+                document.getElementById('start').classList.remove("hidden");
+                document.getElementById('response').classList.add("hidden");
+                document.getElementById("file-upload-form").reset();
+            }
+        }
+
+        if (window.File && window.FileList && window.FileReader) {
+            Init();
+        } else {
+            document.getElementById('file-drag').style.display = 'none';
+        }
+    }
+
+    ekUpload();
+</script>
